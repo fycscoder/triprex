@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "765835812353",
+    "project_id": "triprex-9c351",
+    "storage_bucket": "triprex-9c351.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:765835812353:android:78326e198582a4c79a2a00",
+        "android_client_info": {
+          "package_name": "com.example.triprex"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDkWBp0PVUZLzCvOQ0hT8YyAyNkrfRhOoI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
