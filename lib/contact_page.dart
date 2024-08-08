@@ -1,7 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 
-
 class ContactPage extends StatefulWidget {
   const ContactPage({super.key});
 
@@ -47,7 +46,7 @@ class _ContactPageState extends State<ContactPage> {
     }
   }
 
-    @override
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
@@ -55,7 +54,6 @@ class _ContactPageState extends State<ContactPage> {
       ),
       body: Padding(
         padding: const EdgeInsets.all(20.0),
-        
         child: Form(
           key: _formKey,
           child: ListView(
@@ -168,23 +166,7 @@ class _ContactPageState extends State<ContactPage> {
               SizedBox(height: 20),
               Center(
                 child: ElevatedButton(
-                  onPressed: () {
-                    if (_formKey.currentState!.validate()) {
-                      _formKey.currentState?.save();
-                      // Send the form data
-                      print('Name: $_name');
-                      print('Phone: $_phone');
-                      print('Email: $_email');
-                      print('Message: $_message');
-
-                      // Display a message after submitting
-                      final snackBar = SnackBar(
-                        content: Text('Form submitted successfully'),
-                        duration: Duration(seconds: 2),
-                      );
-                      ScaffoldMessenger.of(context).showSnackBar(snackBar);
-                    }
-                  },
+                  onPressed: _saveFormData,  // Call _saveFormData method
                   child: Text('Submit'),
                 ),
               ),
@@ -194,4 +176,4 @@ class _ContactPageState extends State<ContactPage> {
       ),
     );
   }
-} 
+}

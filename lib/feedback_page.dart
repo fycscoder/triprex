@@ -1,4 +1,21 @@
 import 'package:flutter/material.dart';
+import 'package:firebase_core/firebase_core.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
+
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp();
+  runApp(MyApp());
+}
+
+class MyApp extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      home: FeedbackPage(),
+    );
+  }
+}
 
 class FeedbackPage extends StatefulWidget {
   const FeedbackPage({Key? key}) : super(key: key);
@@ -9,7 +26,7 @@ class FeedbackPage extends StatefulWidget {
 
 class _FeedbackPageState extends State<FeedbackPage> {
   final TextEditingController _controller = TextEditingController();
-  final GlobalKey<FormState> _formKey = GlobalKey();
+  final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
   int _rating = 0;
 
   @override
@@ -22,6 +39,26 @@ class _FeedbackPageState extends State<FeedbackPage> {
     setState(() {
       _rating = rating;
     });
+  }
+
+  // Firestore instance
+  final FirebaseFirestore _firestore = FirebaseFirestore.instance;
+
+  // Method to save feedback to Firestore
+  Future<void> _sendFeedback(String feedbackText, int rating) async {
+    try {
+      await _firestore.collection('feedback').add({
+        'feedback': feedbackText,
+        'rating': rating,
+        'timestamp': Timestamp.now(),
+      });
+      // Feedback successfully saved
+      Navigator.pop(context);
+    } catch (e) {
+      // Handle errors
+      print('Error sending feedback: $e');
+      // Optionally show an error message
+    }
   }
 
   @override
@@ -110,8 +147,8 @@ class _FeedbackPageState extends State<FeedbackPage> {
                           ),
                           onPressed: () async {
                             if (_formKey.currentState!.validate()) {
-                              // Add the necessary code to send the entered data to Firebase Cloud Firestore.
-                              Navigator.pop(context);
+                              String feedbackText = _controller.text.trim();
+                              await _sendFeedback(feedbackText, _rating);
                             }
                           },
                         ),
