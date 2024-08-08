@@ -5,6 +5,8 @@ import 'package:triprex/login_page.dart';
 import 'package:triprex/payment_page.dart';
 import 'package:triprex/profile_page.dart';
 import 'package:triprex/about_page.dart';
+import 'package:triprex/AdminDashboard.dart';
+
 
 class DrawerMenu extends StatelessWidget {
   @override
@@ -27,6 +29,11 @@ class DrawerMenu extends StatelessWidget {
                 const Text('User Name'), // Replace with actual user name
               ],
             ),
+          ),
+          ListTile(
+            leading: const Icon(Icons.admin_panel_settings),
+            title: const Text('Admin'),
+            onTap: () => Navigator.push(context, MaterialPageRoute(builder: (context) => AdminDashboard())), // Navigate to payment page
           ),
           ListTile(
             leading: const Icon(Icons.login),

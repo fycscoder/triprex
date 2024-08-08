@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-
+import 'book_flight_page.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -18,7 +18,7 @@ class _HomePageState extends State<HomePage> {
     {
       'title': 'Cultural tours',
       'description': 'Immerse yourself in local traditions and heritage.',
-      'image': 'hist.png',
+      'image': 'hist.jpg',
     },
     {
       'title': 'Wildlife safaris',
@@ -32,18 +32,23 @@ class _HomePageState extends State<HomePage> {
     },
     {
       'title': 'Honeymoon tours',
-      'description': 'Step back in time and explore iconic landmarks.',
+      'description': 'Spend your precious moments with TripRex',
       'image': 'romantic.jpg',
     },
     {
-      'title': 'Luxury travel',
-      'description': 'Experience the finest accommodations and services.',
+      'title': 'Romantic',
+      'description': 'Cherish your best and memorable memories.',
       'image': 'honeymoon.jpg',
     },
     {
       'title': 'Weekend Joys',
-      'description': '.',
+      'description': 'Plan a refreshing weekend trip to unwind and explore new horizons.',
       'image': 'weekend.jpg',
+    },
+    {
+      'title': 'Luxury Travel',
+      'description': 'Experience the finest accommodations and services.',
+      'image': 'lux.jpg',
     },
   ];
 
@@ -51,7 +56,7 @@ class _HomePageState extends State<HomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Travel Categories'),
+        title: const Text('Travel Categories'),
       ),
       body: LayoutBuilder(
         builder: (context, constraints) {
@@ -70,22 +75,72 @@ class _HomePageState extends State<HomePage> {
                 _showFullScreenDialog(context, _categories[i]);
               },
               child: GridTile(
-                child: Image.asset(
-                  _categories[i]['image']!,
-                  fit: BoxFit.cover,
-                ),
-                footer: GridTileBar(
-                  backgroundColor: Colors.black54,
-                  title: Text(
-                    _categories[i]['title']!,
-                    textAlign: TextAlign.center,
-                    style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
-                  ),
-                  subtitle: Text(
-                    _categories[i]['description']!,
-                    textAlign: TextAlign.center,
-                    style: TextStyle(fontSize: 12),
-                  ),
+                child: Stack(
+                  children: [
+                    Image.asset(
+                      _categories[i]['image']!,
+                      fit: BoxFit.cover,
+                      width: double.infinity,
+                    ),
+                    Positioned(
+                      bottom: 0,
+                      left: 0,
+                      right: 0,
+                      child: Container(
+                        color: Colors.black54,
+                        padding: const EdgeInsets.all(10),
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.center,
+                          children: [
+                            Text(
+                              _categories[i]['title']!,
+                              textAlign: TextAlign.center,
+                              style: const TextStyle(
+                                fontSize: 16,
+                                fontWeight: FontWeight.bold,
+                                color: Colors.white,
+                              ),
+                            ),
+                            const SizedBox(height: 5),
+                            Text(
+                              _categories[i]['description']!,
+                              textAlign: TextAlign.center,
+                              style: const TextStyle(
+                                fontSize: 12,
+                                color: Colors.white,
+                              ),
+                            ),
+                            const SizedBox(height: 10),
+                            ElevatedButton(
+                              onPressed: () {
+                                Navigator.of(context).push(
+                                  MaterialPageRoute(
+                                    builder: (context) => BookFlightPage(
+                                      tourName: _categories[i]['title']!,
+                                    ),
+                                  ),
+                                );
+                              },
+                              style: ElevatedButton.styleFrom(
+                                backgroundColor: Colors.redAccent,
+                                padding: const EdgeInsets.symmetric(
+                                  horizontal: 20,
+                                  vertical: 10,
+                                ),
+                              ),
+                              child: const Text(
+                                'Book Now',
+                                style: TextStyle(
+                                  color: Colors.white,
+                                  fontWeight: FontWeight.bold,
+                                ),
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                    ),
+                  ],
                 ),
               ),
             ),
@@ -116,11 +171,11 @@ class _HomePageState extends State<HomePage> {
               child: Center(
                 child: Container(
                   color: Colors.black54,
-                  padding: EdgeInsets.all(16),
+                  padding: const EdgeInsets.all(16),
                   child: Text(
                     '${category['title']}\n\n${category['description']}',
                     textAlign: TextAlign.center,
-                    style: TextStyle(
+                    style: const TextStyle(
                       color: Colors.white,
                       fontSize: 24,
                       fontWeight: FontWeight.bold,

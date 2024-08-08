@@ -40,8 +40,9 @@ class _MyHomePageState extends State<MyHomePage> {
     HomePage(),
     TourPage(),
     SearchPage(),
-    BookFlightPage(),
+    BookFlightPage(tourName: '',),
     ContactPage(),
+    
     
   ];
 

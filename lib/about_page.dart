@@ -148,59 +148,71 @@ class _AboutPageState extends State<AboutPage> with SingleTickerProviderStateMix
   }
 
   Widget _buildFeatureSection() {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.center,
-      children: [
-        Row(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Icon(Icons.security, color: Colors.white),
-            SizedBox(width: 10),
-            Text(
-              'Safety First',
-              style: TextStyle(fontSize: 18, color: Colors.white),
-            ),
-          ],
-        ),
-        SizedBox(height: 10),
-        Row(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Icon(Icons.verified_user, color: Colors.white),
-            SizedBox(width: 10),
-            Text(
-              'Trusted Travel Guide',
-              style: TextStyle(fontSize: 18, color: Colors.white),
-            ),
-          ],
-        ),
-        SizedBox(height: 10),
-        Row(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Icon(Icons.star, color: Colors.white),
-            SizedBox(width: 10),
-            Text(
-              'Expertise and Experience',
-              style: TextStyle(fontSize: 18, color: Colors.white),
-            ),
-          ],
-        ),
-        SizedBox(height: 10),
-        Row(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Icon(Icons.mood, color: Colors.white),
-            SizedBox(width: 10),
-            Text(
-              'Stress Relief',
-              style: TextStyle(fontSize: 18, color: Colors.white),
-            ),
-          ],
-        ),
-      ],
-    );
-  }
+  return Column(
+    crossAxisAlignment: CrossAxisAlignment.center,
+    children: [
+      Row(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          _buildIconBox(Icons.security),
+          SizedBox(width: 10),
+          Text(
+            'Safety First',
+            style: TextStyle(fontSize: 18, color: Colors.white),
+          ),
+        ],
+      ),
+      SizedBox(height: 10),
+      Row(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          _buildIconBox(Icons.verified_user),
+          SizedBox(width: 10),
+          Text(
+            'Trusted Travel Guide',
+            style: TextStyle(fontSize: 18, color: Colors.white),
+          ),
+        ],
+      ),
+      SizedBox(height: 10),
+      Row(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          _buildIconBox(Icons.star),
+          SizedBox(width: 10),
+          Text(
+            'Expertise and Experience',
+            style: TextStyle(fontSize: 18, color: Colors.white),
+          ),
+        ],
+      ),
+      SizedBox(height: 10),
+      Row(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          _buildIconBox(Icons.mood),
+          SizedBox(width: 10),
+          Text(
+            'Stress Relief',
+            style: TextStyle(fontSize: 18, color: Colors.white),
+          ),
+        ],
+      ),
+    ],
+  );
+}
+
+Widget _buildIconBox(IconData icon) {
+  return Container(
+    padding: const EdgeInsets.all(8.0),
+    decoration: BoxDecoration(
+      color: Colors.white.withOpacity(0.2),
+      borderRadius: BorderRadius.circular(8),
+      border: Border.all(color: Colors.white, width: 1.5),
+    ),
+    child: Icon(icon, color: Colors.white, size: 24),
+  );
+}
 
   Widget _buildHighlightsSection() {
     return Column(

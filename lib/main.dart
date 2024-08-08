@@ -45,7 +45,7 @@ class MyApp extends StatelessWidget {
         '/contact': (context) => const ContactPage(),
         '/feedback': (context) => FeedbackPage(),
         '/aboutUs': (context) => const AboutPage(),
-        '/bookFlight': (context) => const BookFlightPage(),
+        '/bookFlight': (context) => const BookFlightPage(tourName: '',),
         '/facilities': (context) => const FacilitiesPage(),
         '/payment': (context) => PaymentPage(),
         '/tour': (context) => const TourPage(),

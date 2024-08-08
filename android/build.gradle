@@ -8,9 +8,12 @@ buildscript {
     dependencies {
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
         classpath 'com.google.gms:google-services:4.4.2'
-        implementation(platform("com.google.firebase:firebase-bom:33.1.2"))
-        implementation 'com.google.firebase:firebase-analytics:20.0.3'
-        implementation 'com.google.firebase:firebase-firestore:24.0.1'
+        classpath "com.google.firebase:firebase-bom:33.1.2"
+        classpath'com.google.firebase:firebase-analytics:20.0.3'
+        classpath 'com.google.firebase:firebase-firestore:24.0.1'
+        classpath 'com.android.tools.build:gradle:7.2.1' // Update to the latest compatible version // Example for Firebase
+        classpath 'org.jetbrains.kotlin:kotlin-gradle-plugin:1.6.21' // Example for Kotlin
+
     }
 }
 

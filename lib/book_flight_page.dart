@@ -2,7 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 
 class BookFlightPage extends StatefulWidget {
-  const BookFlightPage({super.key});
+  final String tourName;
+
+  const BookFlightPage({super.key, required this.tourName});
 
   @override
   State<BookFlightPage> createState() => _BookFlightPageState();
@@ -40,9 +42,9 @@ class _BookFlightPageState extends State<BookFlightPage> {
                   backgroundImage: AssetImage('img1.jpg'),
                 ),
                 const SizedBox(height: 20),
-                const Text(
-                  'Book your flight',
-                  style: TextStyle(
+                Text(
+                  'Book your flight for ${widget.tourName}',
+                  style: const TextStyle(
                     fontSize: 18,
                     color: Colors.white,
                     fontWeight: FontWeight.bold,
@@ -180,7 +182,7 @@ class _BookFlightPageState extends State<BookFlightPage> {
                               'to': toController.text,
                               'date': dateController.text,
                               'isOneWay': isOneWay,
-                              // Add more fields as needed
+                              'tourName': widget.tourName,
                             });
                           },
                           child: const Text(
@@ -231,6 +233,11 @@ class _BookFlightPageState extends State<BookFlightPage> {
                                   const SizedBox(height: 5),
                                   Text(
                                     'Trip Type: ${flight['isOneWay'] ? 'One Way' : 'Round Trip'}',
+                                    style: const TextStyle(fontSize: 14),
+                                  ),
+                                  const SizedBox(height: 5),
+                                  Text(
+                                    'Tour: ${flight['tourName']}',
                                     style: const TextStyle(fontSize: 14),
                                   ),
                                 ],
